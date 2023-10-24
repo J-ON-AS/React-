@@ -2,12 +2,16 @@ import React  from 'react'
 
 export default function Navbar(props) {
   return (
-    <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
+    <nav className={`navbar navbar-expand-lg navbar-${(props.mode1==='dark' ||  props.mode==='dark')?'dark':'light'} bg-${(props.mode1==='dark' ||  props.mode==='dark')?'dark':'light'}`}>
   <div className="container-fluid">
     <a className="navbar-brand" href="/">{props.title}</a>
-      <div className={`form-check form-switch mx-4 text-${props.mode==='light'?'dark':'light'}`}>
+      <div className={`form-check form-switch mx-4 text-${(props.mode1==='dark' ||  props.mode==='dark')?'light':'dark'}`}>
   <input onClick={props.toggleMode} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
   <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable {`${props.mode==='light'?'Dark':'Light'}`}mode</label>
+      </div>
+      <div className={`form-check form-switch mx-4 text-${(props.mode1==='dark' ||  props.mode==='dark')?'light':'dark'}`}>
+  <input onClick={props.toggleMode1} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
+  <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable {`${props.mode1==='light'?'Pink':'Light'}`}mode</label>
       </div>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>

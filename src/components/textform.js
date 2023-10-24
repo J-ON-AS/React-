@@ -26,10 +26,12 @@ export default function Textform(props) {
   const handleUpClick = () =>{
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Converted to UpperCase","success");
   }
   const handleDownClick = () =>{
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Converted to LowerCase","success");
   };
   const handleOnChange = (event) =>{
     setText(event.target.value)
@@ -37,22 +39,25 @@ export default function Textform(props) {
   const handleExtraSpace = () =>{
     let newText = text.split(/[ ]+/) ;
     setText(newText.join(" "));
+    props.showAlert("Removed Extra Space","success");
   };
   const handleClearSpace = () =>{
     let newText = "";
     setText(newText);
+    props.showAlert("Removed Everything 🐐","success");
   };
   const handleCopy = () =>{
     let element = document.querySelector('#myBox');
     element.select();
     navigator.clipboard.writeText(element.value);
+    props.showAlert("Copied to Clipboard 🐉","success");
   };
   return (
     <>
     <div  className='m-2' >
       <h1>{props.heading}</h1>
       <div   className="mb-3">
-      <textarea style={{backgroundColor:props.mode==='dark'?'#6b2673':'white', color:props.mode==='dark'?'white':'black'}} className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="7"></textarea>
+      <textarea style={{backgroundColor:(props.mode==='dark')?'#6b2673':(props.mode1==='dark')?'pink':'white', color:props.mode==='dark'?'white':'black'}} className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="7"></textarea>
       </div>
       <button className={`btn btn-${props.mode==='dark'?'info':'primary'} mx-2 my-2`} onClick={handleUpClick}>Convert to UpperCase</button>
       <button className={`btn btn-${props.mode==='dark'?'info':'primary'} mx-2 my-2`} onClick={handleDownClick}>Convert to LowerCase</button>
@@ -62,7 +67,7 @@ export default function Textform(props) {
       <button onClick={handleClearSpace} type='button' className={`btn btn-${props.mode==='dark'?'info':'primary'} mx-2 my-2`}>Clear Text</button>
     </div>
       <p className='mx-2 my-1'>Number of letters in paragraph : {text.length}  </p>
-      <p className='mx-2 my-1'>Number of words in paragraph : {text.split(' ').length} </p>
+      <p className='mx-2 my-1'>Number of words in paragraph :{text.substring(text.length - 1) === ' '?text.split(' ').length - 1:text===''?0:text.split(' ').length}  </p>
     </>  
   )
   }
